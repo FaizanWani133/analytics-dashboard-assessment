@@ -162,7 +162,7 @@ function App() {
 
   useEffect(() => {
     setLoading(true);
-    fetch("../public/data-to-visualize/Electric_Vehicle_Population_Data.csv")
+    fetch("./Electric_Vehicle_Population_Data.csv")
       .then((response) => response.text())
       .then((csvText) => {
         Parser.parse(csvText, {
