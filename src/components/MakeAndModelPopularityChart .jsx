@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import {
   BarChart,
   Bar,
@@ -10,13 +9,6 @@ import {
 } from "recharts";
 
 const MakeAndModelPopularityChart = ({ data }) => {
-  const [activeMake, setActiveMake] = useState(null);
-
-  // Toggle function to show/hide models for each make
-  const toggleMake = (make) => {
-    setActiveMake(activeMake === make ? null : make);
-  };
-
   // Custom tooltip to show top models on hover
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
@@ -25,7 +17,7 @@ const MakeAndModelPopularityChart = ({ data }) => {
         <div
           style={{
             backgroundColor: "white",
-            padding: "10px",
+            padding: "20px",
             border: "1px solid #ccc",
           }}
         >
@@ -49,12 +41,11 @@ const MakeAndModelPopularityChart = ({ data }) => {
       style={{
         borderRadius: "6px",
         boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
-        width: "400px",
         padding: "20px",
       }}
     >
       <h3>Make and Model Popularity</h3>
-      <ResponsiveContainer width="100%" height={400}>
+      <ResponsiveContainer width="100%" height={300}>
         <BarChart
           layout="vertical"
           data={data}
@@ -64,26 +55,9 @@ const MakeAndModelPopularityChart = ({ data }) => {
           <XAxis type="number" />
           <YAxis type="category" dataKey="make" />
           <Tooltip content={<CustomTooltip />} />
-          <Bar
-            dataKey="count"
-            fill="#8884d8"
-            onClick={(data) => toggleMake(data.make)}
-          />
+          <Bar dataKey="count" fill="#8884d8" />
         </BarChart>
       </ResponsiveContainer>
-      {activeMake && (
-        <div style={{ marginTop: "20px" }}>
-          <h4>Top Models for {activeMake}</h4>
-          {data
-            .find((item) => item.make === activeMake)
-            .models.slice(0, 5)
-            .map((model, index) => (
-              <div key={index}>
-                {model.model}: {model.count}
-              </div>
-            ))}
-        </div>
-      )}
     </div>
   );
 };

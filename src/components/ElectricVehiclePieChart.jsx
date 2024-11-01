@@ -1,11 +1,20 @@
-import React from 'react';
-import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
-import CustomLegend from './CustomLegend';
+import React from "react";
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
+import CustomLegend from "./CustomLegend";
 
 const COLORS = ["#8884d8", "#83a6ed", "#8dd1e1", "#82ca9d", "#a4de6c"];
 
 const ElectricVehicleTypePieChart = ({ pieData }) => (
-  <div className="chart-container" style={{ display: 'flex', alignItems: 'center',boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",padding:'20px' }}>
+  <div
+    className="chart-container"
+    style={{
+      display: "flex",
+      alignItems: "center",
+      boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
+      padding: "20px",
+      height: "60%",
+    }}
+  >
     {/* <h3>Electric Vehicle Type Distribution</h3> */}
     <ResponsiveContainer width="40%" height={200}>
       <PieChart>
