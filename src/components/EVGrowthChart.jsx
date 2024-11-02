@@ -29,7 +29,6 @@ const EVGrowthChart = ({ data }) => {
           <Line type="monotone" dataKey="TESLA" stroke="#8884d8" />
           <Line type="monotone" dataKey="NISSAN" stroke="#82ca9d" />
           <Line type="monotone" dataKey="CHEVROLET" stroke="#ffc658" />
-          {/* Add more Line components for additional makes */}
         </LineChart>
       </ResponsiveContainer>
     </div>

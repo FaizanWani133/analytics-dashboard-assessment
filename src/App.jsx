@@ -13,10 +13,12 @@ import MakeAndRange from "./components/MakeAndRange";
 import LoadingIndicator from "./components/LoadingIndicator";
 import {
   aggregateEVData,
+  getCAFVCounts,
   getMakeAndModelCounts,
   getModelYearCounts,
   getStateCounts,
 } from "./utils/helperFunctions";
+import CAFVPieChart from "./components/CAFVPieChart ";
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -82,18 +84,14 @@ function App() {
   const aggregatedData = aggregateEVData(filteredData);
   const statesCountData = getStateCounts(filteredData);
   const processedData = getModelYearCounts(filteredData);
-  // Prepare data for pie chart (Electric Vehicle Type distribution)
+  const eligibilityCounts = getCAFVCounts(filteredData);
   const pieData = filteredData.reduce((acc, vehicle) => {
     const type = vehicle["Electric Vehicle Type"];
-
-    // Find if this type is already in acc
     const existingType = acc.find((item) => item.name === type);
 
     if (existingType) {
-      // If it exists, increment its value
       existingType.value += 1;
     } else {
-      // If it does not exist, add it to acc
       acc.push({ name: type, value: 1 });
     }
 
@@ -273,7 +271,9 @@ function App() {
                 overflow: "hidden",
                 width: "500px",
               }}
-            ></div>
+            >
+              <CAFVPieChart data={eligibilityCounts}/>
+            </div>
           </div>
           <div
             style={{ display: "flex", gap: "20px", flexDirection: "column" }}

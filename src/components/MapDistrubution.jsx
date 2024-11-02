@@ -8,7 +8,7 @@ const parseCoordinates = (pointString) => {
   if (match) {
     const longitude = parseFloat(match[1]);
     const latitude = parseFloat(match[2]);
-    return [latitude, longitude]; // Return as [latitude, longitude]
+    return [latitude, longitude];
   }
   return null;
 };

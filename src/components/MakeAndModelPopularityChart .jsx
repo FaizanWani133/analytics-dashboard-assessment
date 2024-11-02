@@ -9,7 +9,6 @@ import {
 } from "recharts";
 
 const MakeAndModelPopularityChart = ({ data }) => {
-  // Custom tooltip to show top models on hover
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
       const models = data.find((item) => item.make === label)?.models;

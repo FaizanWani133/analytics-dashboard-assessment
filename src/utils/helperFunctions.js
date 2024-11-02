@@ -92,3 +92,25 @@ export const getModelYearCounts = (data) => {
     }))
     .sort((a, b) => a.year - b.year); // Sort by year
 };
+
+export const getCAFVCounts = (data) => {
+  const eligibilityCounts = data.reduce(
+    (acc, vehicle) => {
+      if (
+        vehicle["Clean Alternative Fuel Vehicle (CAFV) Eligibility"] ===
+        "Clean Alternative Fuel Vehicle Eligible"
+      ) {
+        acc.eligible++;
+      } else {
+        acc.notEligible++;
+      }
+      return acc;
+    },
+    { eligible: 0, notEligible: 0 }
+  );
+
+  return [
+    { name: "Yes", value: eligibilityCounts.eligible },
+    { name: "No", value: eligibilityCounts.notEligible },
+  ];
+};
